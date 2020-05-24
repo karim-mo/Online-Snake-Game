@@ -1,11 +1,3 @@
-/********************************************************
- ** Program Filename: Snake.java
- ** Author: Karim & Omar
- ** Project Start Date: 28.04.2019
- ** Description: Controls snake movements and interactions
- ********************************************************/
-
-
 package com.snake.game.sprites;
 
 import com.badlogic.gdx.Gdx;

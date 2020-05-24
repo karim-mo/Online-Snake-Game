@@ -1,10 +1,3 @@
-/********************************************************
- ** Program Filename: MainGame.java
- ** Author: Karim & Omar
- ** Project Start Date: 28.04.2019
- ** Description: Main launcher for game
- ********************************************************/
-
 package com.snake.game;
 
 import com.badlogic.gdx.ApplicationAdapter;

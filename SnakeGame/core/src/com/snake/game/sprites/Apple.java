@@ -1,10 +1,3 @@
-/********************************************************
- ** Program Filename: Apple.java
- ** Author: Karim & Omar
- ** Project Start Date: 28.04.2019
- ** Description: Controls apples spawning
- ********************************************************/
-
 package com.snake.game.sprites;
 
 import com.badlogic.gdx.Gdx;
