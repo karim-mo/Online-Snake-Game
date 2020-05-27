@@ -146,12 +146,12 @@ public class Apple {
         this.position = position;
     }
     
-        public boolean getMove(){
+    public boolean getMove(){
         
         return move;
     }
     public void setMove(boolean move){
-        this.move=move;
+        this.move = move;
     }
     
 }

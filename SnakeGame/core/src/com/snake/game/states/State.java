@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 
 public abstract class State {
     protected GameStateManager gsm;
-    protected Vector3 mouse;
+    //protected Vector3 mouse;
 
     protected State(GameStateManager gsm){
         this.gsm = gsm;

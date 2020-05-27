@@ -54,8 +54,6 @@ public class MainGame extends ApplicationAdapter {
 
         gsm.render(sb);
         gsm.update(Gdx.graphics.getDeltaTime());
-        
-        
     }
 /*********************************************************************************
 ** Function: dispose
