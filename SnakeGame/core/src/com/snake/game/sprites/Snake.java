@@ -139,11 +139,7 @@ public class Snake {
             }
         }
         else{
-           //timer -= dt;
-           //if(timer <= 0){
             handleBodyFollow(dt);
-            //timer = 0.03f;
-          // }
         }
         box.setPosition(position.x, position.y);
         
@@ -220,7 +216,7 @@ public class Snake {
         HashMap<String, Snake> ret2 = new HashMap<String, Snake>();
         for(HashMap.Entry<String, HashMap<String, Snake>> ent : snakes.entrySet()){
             for(HashMap.Entry<String, Snake> entry : ent.getValue().entrySet()){
-                entry.getValue().getBox().setPosition(entry.getValue().getPosition());
+                //entry.getValue().getBox().setPosition(entry.getValue().getPosition());
                 if(onlineCollision(dt, entry.getValue())){               
                     ret2.put(entry.getKey(), entry.getValue());
                     ret.put(ent.getKey(), ret2);
@@ -276,20 +272,20 @@ public class Snake {
     
     
     public void handleBodyFollow(float dt){
-        float prevx = body.get(0).getPosition().x;
-        float prevy = body.get(0).getPosition().y;
-        float prev2x, prev2y;
+        float prevX = body.get(0).getPosition().x;
+        float prevY = body.get(0).getPosition().y;
+        float currX, currY;
         body.get(0).getPosition().x = position.x;
         body.get(0).getPosition().y = position.y;
         body.get(0).update();
         for(int i = 1; i < body.size; i++){
-            prev2x = body.get(i).getPosition().x;
-            prev2y = body.get(i).getPosition().y;
-            body.get(i).getPosition().x = prevx;
-            body.get(i).getPosition().y = prevy;
+            currX = body.get(i).getPosition().x;
+            currY = body.get(i).getPosition().y;
+            body.get(i).getPosition().x = prevX;
+            body.get(i).getPosition().y = prevY;
             body.get(i).update();
-            prevx = prev2x;
-            prevy = prev2y;
+            prevX = currX;
+            prevY = currY;
         }
     }
 /*********************************************************************************
@@ -326,7 +322,7 @@ public class Snake {
             if(box.overlaps(other.body.get(i).getBox())){
                 return true;
                 }
-            }
+        }
         if(box.overlaps(other.getBox())){
             return true;
         }

@@ -48,35 +48,17 @@ public class Apple {
 ** Post-Conditions: Apple is spawned randomly.
 *********************************************************************************/
     public void update(float dt, boolean online){
-        
         if(!online){
-            timer -= dt;     
+            timer -= dt;
             if( timer <= 0 ){
-//                if ( rand.nextInt(11) == 1 )
-//                     apple = new Texture("superenemy.png");
-//
-//                else apple = new Texture("enemy.png");
-                //prevpos = position;
-
                 position.x = randx.nextInt(MainGame.WIDTH/25) * 25;
                 position.y = randy.nextInt(MainGame.HEIGHT/25) * 25;
-                //setMove(true);
                 
                 timer = 5f;
             }  
         }
-//        else {
-//            timer2 -= dt;       
-//            if( MultiplayerONLINE.appp){
-//                MultiplayerONLINE.appp=false;
-//                position.x = randx.nextInt(MainGame.WIDTH/25) * 25;
-//                position.y = randy.nextInt(MainGame.HEIGHT/25) * 25;
-//                //setMove(true);
-//                timer2 = 5f;
-//            }
-//        }
     
-        box.setPosition(position.x, position.y);       
+        box.setPosition(position.x, position.y);      
     }
     
     public Rectangle getBox(){
@@ -134,7 +116,7 @@ public class Apple {
         this.timer2 = timer2;
     }
     
-        public Texture getTexture(){
+    public Texture getTexture(){
         return apple;
     }
     

@@ -231,9 +231,11 @@ public class MultiplayerONLINE extends State{
                     try {
                         String pid = data.getString("id");
                         String sid = data2.getString("session");
-                        Gdx.app.log("SocketIO", "New Player Connect: " + id);
-                        p.put(pid, new Snake(100, 100, gsm, mainEnemy));
-                        Enemies.put(sid, p);
+                        if(sid.equals(sessid)){
+                            Gdx.app.log("SocketIO", "New Player Connect: " + id);
+                            p.put(pid, new Snake(100, 100, gsm, mainEnemy));
+                            Enemies.put(sid, p);
+                        }
                     }catch(JSONException e){
                         Gdx.app.log("SocketIO", "Error getting New PlayerID");
                     }
@@ -251,9 +253,11 @@ public class MultiplayerONLINE extends State{
                         ));                      
                         String appid = data2.getString("appid");
                         String sid = data3.getString("session");
-                        Gdx.app.log("SocketIO", "New Apple: " + appid);    
-                        a.put(appid, x);
-                        apples.put(sid, a);                      
+                        if(sid.equals(sessid)){
+                            Gdx.app.log("SocketIO", "New Apple: " + appid);    
+                            a.put(appid, x);
+                            apples.put(sid, a);
+                        }
                     }catch(JSONException e){
                         Gdx.app.log("SocketIO", "Error getting New AppleID");
                     }

@@ -1,6 +1,7 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+
 var AU = setInterval(AppleUpdate, 1000);
 var SU = setInterval(ServerUpdate, 5000, {}, false);
 var sessions = [];
@@ -130,24 +131,22 @@ io.on('connection', function (socket) {
         //socket.emit('getPlayers', s.players);
 
     });
-    socket.on('appleMoved', function (data) {
+    // socket.on('appleMoved', function (data) {
+    //     data.appid = socket.id;
+    //     var pl = getGameData(socket.id);
+    //     data.session = pl.sindex;
+    //     socket.broadcast.emit('appleMoved', data);
 
+    //     var s = pl.session;
+    //     try {
+    //         //socket.emit('getApples', s.apples);
+    //         s.apples[pl.pindex].x = data.x;
+    //         s.apples[pl.pindex].y = data.y;
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
 
-        data.appid = socket.id;
-        var pl = getGameData(socket.id);
-        data.session = pl.sindex;
-        socket.broadcast.emit('appleMoved', data);
-
-        var s = pl.session;
-        try {
-            //socket.emit('getApples', s.apples);
-            s.apples[pl.pindex].x = data.x;
-            s.apples[pl.pindex].y = data.y;
-        } catch (e) {
-            console.log(e);
-        }
-
-    });
+    // });
     socket.on('appleMovedM', function (data) {
         ServerUpdate(data, true);
     });
