@@ -22,26 +22,31 @@ io.on('connection', function (socket) {
     var p = new player(socket.id, 0, 0);
     var a = new apple(socket.id, getRandomInt((1280/25)) * 25 , getRandomInt((720/25)) * 25 );
     var flag = false;
-
-    sessions.forEach(function (k) {
-        if (k.players.length < 4) {
-            p.session = k.sessionid;
-            a.session = k.sessionid;
-            k.players.push(p);
-            k.apples.push(a);
-            flag = true;
-            var today = new Date();
-            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            var dateTime = date + ' ' + time;
-            console.log("[" + dateTime + "]" + " New server connection from ID: " + socket.id + " sent to session " + k.sessionid + " with " + k.players.length + " players online.");
-            socket.emit('socketID', { id: socket.id }, { appid: socket.id }, { session: k.sessionid });
-            socket.emit('getPlayers', k.players);
-            socket.broadcast.emit('newApple', { appid: socket.id, x: a.x, y: a.y }, { session: k.sessionid });
-            socket.emit('getApples', k.apples);
-            socket.broadcast.emit('newPlayer', { id: socket.id }, { session: k.sessionid });
-        }
-    });
+    try{
+        sessions.forEach(function (k) {
+            if (k.players.length < 4) {
+                p.session = k.sessionid;
+                a.session = k.sessionid;
+                k.players.push(p);
+                k.apples.push(a);
+                flag = true;
+                var today = new Date();
+                var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                var dateTime = date + ' ' + time;
+                console.log("[" + dateTime + "]" + " New server connection from ID: " + socket.id + " sent to session " + k.sessionid + " with " + k.players.length + " players online.");
+                socket.emit('socketID', { id: socket.id }, { appid: socket.id }, { session: k.sessionid });
+                socket.emit('getPlayers', k.players);
+                socket.broadcast.emit('newApple', { appid: socket.id, x: a.x, y: a.y }, { session: k.sessionid });
+                socket.emit('getApples', k.apples);
+                socket.broadcast.emit('newPlayer', { id: socket.id }, { session: k.sessionid });
+                throw Error();
+            }
+        });
+    } catch(e){
+        // NULL
+    }
+    
 
     if (!flag) {
         sessions.push(new session(sess_id));

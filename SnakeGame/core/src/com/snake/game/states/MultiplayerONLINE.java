@@ -25,7 +25,7 @@ public class MultiplayerONLINE extends State{
     private Socket socket;
     private String id;
     private String sessid;
-    public static boolean appp=false;
+    //public static boolean appp=false;
     private String appleid;
     private Snake player;
     private Apple apple;
@@ -42,6 +42,7 @@ public class MultiplayerONLINE extends State{
     private final int APPLES = 2;
     private final float UPDATE_TIME = 1/10f;
     private boolean started = false;
+    
     
     HashMap<String, Apple> a = new HashMap<String, Apple>();
     HashMap<String, Snake> p = new HashMap<String, Snake>();
@@ -193,6 +194,7 @@ public class MultiplayerONLINE extends State{
     public final void connectSocket(){
       try {
           socket = IO.socket("http://localhost:9000");
+          //socket = IO.socket("197.48.205.99:9000");
           socket.connect();
       } catch(Exception e){
           System.out.println(e);
@@ -250,7 +252,7 @@ public class MultiplayerONLINE extends State{
                         x.setPosition(new Vector2(
                                 (float)data2.getDouble("x"),
                                 (float)data2.getDouble("y")                              
-                        ));                      
+                        ));  
                         String appid = data2.getString("appid");
                         String sid = data3.getString("session");
                         if(sid.equals(sessid)){
@@ -316,8 +318,7 @@ public class MultiplayerONLINE extends State{
                                 String appid = data.getJSONObject(i).getString("appid");
                                 String sid = data.getJSONObject(i).getString("session");
                                 a.put(appid, x);
-                                apples.put(sid, a);  
-                                
+                                apples.put(sid, a);
                             }
                         } catch(JSONException e){
                             Gdx.app.log("SocketIO", "Error getting apples");
@@ -332,6 +333,7 @@ public class MultiplayerONLINE extends State{
                         String sid = data.getString("session");
                         float x = (float)data.getDouble("x");
                         float y = (float)data.getDouble("y");
+                        
                         if(Enemies.get(sid) != null && Enemies.get(sid).get(pid) != null){
                             Enemies.get(sid).get(pid).update(Gdx.graphics.getDeltaTime(), true, true, playerApples, null);                          
                             if(Enemies.get(sid).get(pid).getPosition().x == x && Enemies.get(sid).get(pid).getPosition().y < y){
@@ -386,7 +388,7 @@ public class MultiplayerONLINE extends State{
                             Enemies.get(sid).get(pid).body.add(new SnakeBody(Enemies.get(sid).get(pid).getPosition().x - 25,
                                                             Enemies.get(sid).get(pid).getPosition().y,
                                                             mainEnemy[4]
-                                ));
+                            ));
                             for(int i = 1; i < z; i++){
                                 Enemies.get(sid).get(pid).body.add(new SnakeBody(Enemies.get(sid).get(pid).body.get(Enemies.get(sid).get(pid).body.size - 1).getPosition().x,
                                                             Enemies.get(sid).get(pid).body.get(Enemies.get(sid).get(pid).body.size - 1).getPosition().y,
