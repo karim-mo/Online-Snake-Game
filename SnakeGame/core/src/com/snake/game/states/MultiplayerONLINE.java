@@ -193,8 +193,8 @@ public class MultiplayerONLINE extends State{
     
     public final void connectSocket(){
       try {
-          socket = IO.socket("http://localhost:9000");
-          //socket = IO.socket("197.48.205.99:9000");
+          //socket = IO.socket("http://localhost:9000");
+          socket = IO.socket("http://197.48.115.192:9000");
           socket.connect();
       } catch(Exception e){
           System.out.println(e);
